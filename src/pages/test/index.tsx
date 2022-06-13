@@ -1,6 +1,4 @@
 
-import { wordlists } from 'ethers'
-import { type } from 'os'
 import React, { useState, useEffect } from 'react'
 import Layout from '../../layout/Layout'
 import { useTestState } from '../../state/testState/hooks'
