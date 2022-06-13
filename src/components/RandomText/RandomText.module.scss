@@ -1,0 +1,41 @@
+@import '../../styles/global.scss';
+
+.random {
+  @include position(column, center, center);
+  // margin-top: 50px;
+  background-color: white;
+  padding: 50px 0px 50px 0px;
+  width: 100%;
+
+  .wrap {
+    padding: 0px 20px 0px 20px;
+    line-height: 30px;
+    width: 50%;
+    text-align: left;
+  }
+
+  span {
+    max-width: 100px;
+    text-align: center;
+  }
+
+  button {
+    background-color: #1da99e;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .random{
+    .wrap{
+      width: 100%;
+    }
+  }
+}

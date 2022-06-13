@@ -1,0 +1,50 @@
+@import '../../styles/global.scss';
+
+.custom {
+  @include position(column, center, center);
+  margin-top: 50px;
+  background-color: white;
+  height: 300px;
+  box-sizing: border-box;
+  padding: 0px 20px 0px 20px;
+
+  textarea {
+    width: 50%;
+    color: black;
+    height: 200px;
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    padding: 20px;
+    box-sizing: border-box;
+    outline: none;
+    &:focus {
+      border: 1px solid #1da99e;
+    }
+  }
+
+  .custom__button {
+    width: 50%;
+    button {
+      background-color: #1da99e;
+      padding: 10px 35px;
+      margin-top: 10px;
+      margin-right: 10px;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .custom {
+    textarea {
+      width: 100%;
+    }
+    .custom__button {
+      width: 100%;
+    }
+  }
+}

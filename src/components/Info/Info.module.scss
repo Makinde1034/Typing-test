@@ -1,0 +1,21 @@
+.info{
+    // height: 150px;
+    width: 300px;
+    background: white;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 15px;
+
+    p{
+        line-height: 23px;
+        margin-bottom: 10px;
+    }
+
+    button{
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+}

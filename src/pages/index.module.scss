@@ -1,0 +1,29 @@
+@import '../styles/global.scss';
+
+
+
+.container {
+  background: #f9fafb;
+  padding-top: 100px;
+  min-height: 90vh;
+  box-sizing: border-box;
+  padding: 0;margin: 0;
+  width: 100%;
+
+  .container__buttons {
+    @include position(row, center, center);
+    padding: 20px 0px 20px 0px;
+   
+    
+    button {
+      background-color: #1da99e;
+      padding: 10px 10px;
+      margin-right: 10px;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
