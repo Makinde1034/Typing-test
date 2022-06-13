@@ -11,12 +11,11 @@ import '../styles/app.css'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-    <Providers store={store}>
-      <Component {...pageProps} />
-      <Modal />
-      <Info />
-    </Providers>
-      
+      <Providers store={store}>
+        <Component {...pageProps} />
+        <Modal />
+        <Info />
+      </Providers>
     </>
   )
 }

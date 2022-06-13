@@ -5,14 +5,15 @@ import CustomText from '../components/CustomText/CustomText'
 import RandomText from '../components/RandomText/RandomText'
 import { useTestState } from '../state/testState/hooks'
 import randomwords from 'random-words'
-
+import { useSpring, animated } from 'react-spring'
 
 const IndexPage = () => {
-  const { testState, toggleSource, setParagraph, } = useTestState()
+  const { testState, toggleSource, setParagraph } = useTestState()
+  const props = useSpring({ to: { opacity: 1, }, from: { opacity: 0,  }, delay: 100 })
 
-  useEffect(()=>{
+  useEffect(() => {
     // toggleModal(false)
-  },[])
+  }, [])
 
   const generateRandomTexts = () => {
     setParagraph([])
@@ -22,20 +23,18 @@ const IndexPage = () => {
 
   const _useCustomText = () => {
     toggleSource(true)
-    
   }
 
   return (
     <Layout title="Home | Typing test Challenge">
-      <div className={styles.container}>
-        <div className={styles.container__buttons}>
+      <animated.div style={props} className={styles.container}>
+        <div data-testid="buttons" className={styles.container__buttons}>
           <button onClick={() => _useCustomText()}>Custom text</button>
           <button onClick={() => generateRandomTexts()}>Random text</button>
         </div>
 
         {testState.isCustomParagraphActive ? <CustomText /> : <RandomText />}
-      
-      </div>
+      </animated.div>
     </Layout>
   )
 }

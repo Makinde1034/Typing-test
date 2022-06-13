@@ -3,6 +3,7 @@ import Layout from '../../layout/Layout'
 import { useTestState } from '../../state/testState/hooks'
 import styles from './index.module.scss'
 import { useRouter } from 'next/router'
+import { useSpring, animated } from 'react-spring'
 
 function Test() {
   const { testState, setResult, _toggleModal, _toggleInfoBox } = useTestState()
@@ -15,6 +16,7 @@ function Test() {
   const [notCorrect, setNotCorrect] = useState(0)
   const [typedEntries, setTypedEntrie] = useState(1)
   const [countDown, setCountDown] = useState<number>(testState.time)
+  const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 100 })
 
   useEffect(() => {
     if (testState.paragraph.length === 0) {
@@ -102,7 +104,7 @@ function Test() {
       // set typing test result in state
 
       setResult({
-        accuracy: Math.round((isCorrect / (isCorrect + notCorrect)) * 100),
+        accuracy: Math.round((isCorrect / (isCorrect + notCorrect)) * 100) || 0,
         score: `${isCorrect}/${testState.paragraph.length}`,
         speed: `${Math.floor(typedEntries / 5 / (testState.time / 60))}WPM`,
       })
@@ -137,12 +139,12 @@ function Test() {
 
   return (
     <Layout title="Test page">
-      <div className={styles.test}>
+      <animated.div style={props} className={styles.test}>
         <div className={styles.info}>
           <p className={styles.info__score}>
             Your score : {isCorrect}/{testState.paragraph.length}
           </p>
-          <p>{countDown > 1 ? `${countDown}S` : 'Time Up'}</p>
+          <p>{countDown > 1 ? `${countDown}s` : 'Time Up'}</p>
         </div>
         <div className={styles.text__box}>
           {testState.paragraph.map((item, index) => (
@@ -166,7 +168,7 @@ function Test() {
           placeholder="Test will start when you type first character.
 Press any key to continue."
         />
-      </div>
+      </animated.div>
     </Layout>
   )
 }
