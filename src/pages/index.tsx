@@ -20,7 +20,7 @@ const IndexPage = () => {
     setParagraph(randomwords(100))
   }
 
-  const useCustomText = () => {
+  const _useCustomText = () => {
     toggleSource(true)
     
   }
@@ -29,7 +29,7 @@ const IndexPage = () => {
     <Layout title="Home | Typing test Challenge">
       <div className={styles.container}>
         <div className={styles.container__buttons}>
-          <button onClick={() => useCustomText()}>Custom text</button>
+          <button onClick={() => _useCustomText()}>Custom text</button>
           <button onClick={() => generateRandomTexts()}>Random text</button>
         </div>
 

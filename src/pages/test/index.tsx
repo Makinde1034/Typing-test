@@ -16,7 +16,7 @@ function Test() {
   const [notCorrect, setNotCorrect] = useState(0)
   const [typedEntries, setTypedEntrie] = useState(1)
   const [countDown, setCountDown] = useState<number>(testState.time)
-  const [timeTypingStarted, setTimeTypingStarted] = useState(null)
+  // const [timeTypingStarted, setTimeTypingStarted] = useState(null)
   // const [timeTypingEnded, setTimeTypingEnded] = useState(null)
 
 		
@@ -57,7 +57,7 @@ function Test() {
   const handleKeyDown = (e: any) => {
     // keycode is used to know when space bar is pressed and compare function is called.
     setTypedEntrie(typedEntries + 1)
-    setTimeTypingStarted(Date.now())
+    // setTimeTypingStarted(Date.now())
 
     if (e.keyCode === 32) {
       compareWord()
