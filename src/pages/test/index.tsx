@@ -1,4 +1,4 @@
-import Countdown from 'antd/lib/statistic/Countdown'
+
 import { wordlists } from 'ethers'
 import { type } from 'os'
 import React, { useState, useEffect } from 'react'
@@ -11,7 +11,6 @@ function Test() {
   const { testState, setTime, endTest, setResult, _toggleModal,_toggleInfoBox } = useTestState()
   const [currentInput, setCurrentInput] = useState('')
   const router = useRouter()
-  // currentword index keeps track of the latest word typed.
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [currentCharIndex, setCurrentCharIndex] = useState(-1)
   const [currentChar, setCurrentChar] = useState('')
@@ -125,27 +124,11 @@ function Test() {
     }, 1000)
   }
 
-  // if (counter === 0) {
-  //   setResult({
-  //     accuracy: Math.round((isCorrect / (isCorrect + notCorrect)) * 100),
-  //     score: `${isCorrect}/${testState.paragraph.length}`,
-  //     speed: `${Math.round(typedEntries / 5 / testState.time)}WPM`,
-  //   })
-  //   clearInterval(intervalId)
-  //   endTest(true)
-  //   _toggleModal(true)
-  //   setTime(0)
-  // }
-
+  
   return (
     <Layout title="Test page">
       <div className={styles.test}>
-        {/* <p className={styles.score}>
-          {isCorrect}/{testState.paragraph.length}
-          {Math.round(typedEntries / 5 / countDown)}WPM
-    
-		
-         </p>  */}
+      
         <div className={styles.info}>
           <p className={styles.info__score}>
             Your score : {isCorrect}/{testState.paragraph.length}
