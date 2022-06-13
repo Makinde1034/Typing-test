@@ -6,7 +6,7 @@ import styles from './index.module.scss'
 import { useRouter } from 'next/router'
 
 function Test() {
-  const { testState, setTime, endTest, setResult, _toggleModal,_toggleInfoBox } = useTestState()
+  const { testState, setResult, _toggleModal,_toggleInfoBox } = useTestState()
   const [currentInput, setCurrentInput] = useState('')
   const router = useRouter()
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
@@ -17,7 +17,7 @@ function Test() {
   const [typedEntries, setTypedEntrie] = useState(1)
   const [countDown, setCountDown] = useState<number>(testState.time)
   const [timeTypingStarted, setTimeTypingStarted] = useState(null)
-  const [timeTypingEnded, setTimeTypingEnded] = useState(null)
+  // const [timeTypingEnded, setTimeTypingEnded] = useState(null)
 
 		
   useEffect(() => {
@@ -110,7 +110,7 @@ function Test() {
   }, [countDown])
 
   const start = () => {
-    let interval = setInterval(() => {
+    setInterval(() => {
       setCountDown((prev) => {
         if (prev === 0) {
           console.log()

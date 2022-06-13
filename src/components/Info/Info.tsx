@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import styles from './Info.module.scss'
 import { useTestState } from '../../state/testState/hooks'
-import { toggleInfoBox } from '../../state/testState'
+
 
 function Info() {
   const { testState,_toggleInfoBox } = useTestState()

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import styles from './RandomText.module.scss'
 import randomwords from 'random-words'
 import { useTestState } from '../../state/testState/hooks'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 function RandomText() {
@@ -27,7 +26,7 @@ function RandomText() {
   return (
     <div className={styles.random}>
       <div className={styles.wrap}>
-        {testState.paragraph.map((item, index) => (
+        {testState.paragraph.map((item) => (
           <>
             <span>{item}</span>
             <span> </span>

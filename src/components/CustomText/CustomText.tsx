@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styles from './CustomText.module.scss'
-import randomwords from 'random-words'
 import { useTestState } from '../../state/testState/hooks'
 
 function CustomText() {
   const [text, setText] = useState('')
-  const { setParagraph, toggleSource, testState } = useTestState()
+  const { setParagraph, toggleSource } = useTestState()
 
   useEffect(() => {
     setParagraph([])
