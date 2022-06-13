@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 import Nav from '../components/Nav/Nav'
 import styles from './Layout.module.scss'

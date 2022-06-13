@@ -8,11 +8,12 @@ import randomwords from 'random-words'
 import { useSpring, animated } from 'react-spring'
 
 const IndexPage = () => {
-  const { testState, toggleSource, setParagraph } = useTestState()
+  const { testState, toggleSource, setParagraph,startTest } = useTestState()
   const props = useSpring({ to: { opacity: 1, }, from: { opacity: 0,  }, delay: 100 })
 
   useEffect(() => {
-    // toggleModal(false)
+    
+    startTest(false)
   }, [])
 
   const generateRandomTexts = () => {
