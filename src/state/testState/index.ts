@@ -4,15 +4,15 @@ import type { testState, result, info } from '../../interfaces'
 const initialState: testState = {
   isCustomParagraphActive: false,
   paragraph: [],
-  time: 60,
+  time: 10,
   testStart: false,
   isCountDownActive: false,
   testEnd: false,
-	isModalOpen:false,
-	info:{
-			isInfoBoxOpen:false,
-			msg:""
-	},
+  isModalOpen: false,
+  info: {
+    isInfoBoxOpen: false,
+    msg: '',
+  },
 
   result: {
     accuracy: 0,
@@ -43,17 +43,25 @@ const testSlice = createSlice({
     setTestResult: (state, action: PayloadAction<result>) => {
       state.result = action.payload
     },
-		toggleModal:(state,action:PayloadAction<boolean>)=>{
-			state.isModalOpen = action.payload
-		},
-		toggleInfoBox:(state,action:PayloadAction<info>)=>{
-			state.info.msg = action.payload.msg
-			state.info.isInfoBoxOpen = action.payload.isInfoBoxOpen
-		}
+    toggleModal: (state, action: PayloadAction<boolean>) => {
+      state.isModalOpen = action.payload
+    },
+    toggleInfoBox: (state, action: PayloadAction<info>) => {
+      state.info.msg = action.payload.msg
+      state.info.isInfoBoxOpen = action.payload.isInfoBoxOpen
+    },
   },
 })
 
 export default testSlice.reducer
 
-export const { toggleParagraphSource, setTestParagraph, setTestTime, setTestStart, setTestEnd, setTestResult, toggleModal, toggleInfoBox } =
-  testSlice.actions
+export const {
+  toggleParagraphSource,
+  setTestParagraph,
+  setTestTime,
+  setTestStart,
+  setTestEnd,
+  setTestResult,
+  toggleModal,
+  toggleInfoBox,
+} = testSlice.actions

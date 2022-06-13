@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import Layout from '../../layout/Layout'
 import { useTestState } from '../../state/testState/hooks'
@@ -6,7 +5,7 @@ import styles from './index.module.scss'
 import { useRouter } from 'next/router'
 
 function Test() {
-  const { testState, setResult, _toggleModal,_toggleInfoBox } = useTestState()
+  const { testState, setResult, _toggleModal, _toggleInfoBox } = useTestState()
   const [currentInput, setCurrentInput] = useState('')
   const router = useRouter()
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
@@ -16,23 +15,20 @@ function Test() {
   const [notCorrect, setNotCorrect] = useState(0)
   const [typedEntries, setTypedEntrie] = useState(1)
   const [countDown, setCountDown] = useState<number>(testState.time)
-  // const [timeTypingStarted, setTimeTypingStarted] = useState(null)
-  // const [timeTypingEnded, setTimeTypingEnded] = useState(null)
 
-		
   useEffect(() => {
     if (testState.paragraph.length === 0) {
-			_toggleModal(false)
+      _toggleModal(false)
       router.push('/')
     }
   }, [])
 
-	useEffect(() => {
+  useEffect(() => {
     const infoTwoSeen = localStorage.getItem('info2')
     if (!infoTwoSeen) {
       _toggleInfoBox({
         isInfoBoxOpen: true,
-        msg: 'Test will start when you type first character.Press any key to continue.'
+        msg: 'Test will start when you type first character.Press any key to continue.',
       })
       localStorage.setItem('info2', 'info2 has been seen')
     }
@@ -42,7 +38,7 @@ function Test() {
   useEffect(() => {
     const lasItemInParagraph = testState.paragraph[testState.paragraph.length - 1]
     const indexOfLastItemInParagraph = testState.paragraph.lastIndexOf(lasItemInParagraph)
-		console.log(currentWordIndex,indexOfLastItemInParagraph,"check")
+    console.log(currentWordIndex, indexOfLastItemInParagraph, 'check')
 
     if (currentWordIndex - 1 === indexOfLastItemInParagraph) {
       setResult({
@@ -57,9 +53,11 @@ function Test() {
   const handleKeyDown = (e: any) => {
     // keycode is used to know when space bar is pressed and compare function is called.
     setTypedEntrie(typedEntries + 1)
-    // setTimeTypingStarted(Date.now())
 
     if (e.keyCode === 32) {
+      if (!currentChar) {
+        return
+      }
       compareWord()
       setCurrentWordIndex(currentWordIndex + 1)
       setCurrentInput('')
@@ -74,7 +72,7 @@ function Test() {
   }
 
   const compareWord = () => {
-    // get the current word from the store state with currentLetterIndex.
+    // get the current word from the store state with currentWordIndex.
     const currentWord = testState.paragraph[currentWordIndex]
     const wordsMatch = currentWord === currentInput.trim()
     if (wordsMatch) {
@@ -99,21 +97,25 @@ function Test() {
   }
 
   useEffect(() => {
+    // diplay test result when time is up
     if (countDown === 0) {
+      // set typing test result in state
+
       setResult({
         accuracy: Math.round((isCorrect / (isCorrect + notCorrect)) * 100),
         score: `${isCorrect}/${testState.paragraph.length}`,
-        speed: `${typedEntries / 5 / 10000}WPM`,
+        speed: `${Math.floor(typedEntries / 5 / (testState.time / 60))}WPM`,
       })
+      // opens modal for result display
       _toggleModal(true)
     }
   }, [countDown])
 
+  // starts typing test
   const start = () => {
     setInterval(() => {
       setCountDown((prev) => {
         if (prev === 0) {
-          console.log()
           clearInterval()
         } else {
           return prev - 1
@@ -122,11 +124,20 @@ function Test() {
     }, 1000)
   }
 
-  
+  const handleInput = (e) => {
+    setCurrentInput(e.target.value)
+  }
+
+  const handleStart = () => {
+    if (currentChar) {
+      return
+    }
+    start()
+  }
+
   return (
     <Layout title="Test page">
       <div className={styles.test}>
-      
         <div className={styles.info}>
           <p className={styles.info__score}>
             Your score : {isCorrect}/{testState.paragraph.length}
@@ -148,14 +159,13 @@ function Test() {
           ))}
         </div>
         <textarea
-          onClick={() => start()}
+          onClick={() => handleStart()}
           onKeyDown={(e) => handleKeyDown(e)}
           value={currentInput}
-          onChange={(e) => setCurrentInput(e.target.value)}
+          onChange={(e) => handleInput(e)}
           placeholder="Test will start when you type first character.
 Press any key to continue."
         />
-        {currentInput}
       </div>
     </Layout>
   )
