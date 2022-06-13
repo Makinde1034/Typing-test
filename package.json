@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
+    "cssnano": "^5.1.11",
     "next": "latest",
     "random-words": "^1.1.2",
     "react": "^18.1.0",
