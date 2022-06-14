@@ -1,1 +1,1 @@
-# Next.js + TailwindCSS Boilerplate
+# Typing speed test app built with Nextjs
