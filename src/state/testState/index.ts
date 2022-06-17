@@ -4,7 +4,7 @@ import type { testState, result, info } from '../../interfaces'
 const initialState: testState = {
   isCustomParagraphActive: false,
   paragraph: [],
-  time: 10,
+  time: 60,
   testStart: false,
   isCountDownActive: false,
   testEnd: false,
